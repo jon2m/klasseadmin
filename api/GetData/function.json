@@ -15,25 +15,6 @@
       "type": "http",
       "direction": "out",
       "name": "res"
-    },
-
-   {
-      "name": "outputDoc",
-      "direction": "out",
-      "type": "cosmosDB",
-      "databaseName": "klasser",
-      "collectionName": "laerer",
-      "connectionStringSetting": "klasseadmin-db_DOCUMENTDB"
-    },
-    {
-      "name": "inputDoc",
-      "direction": "in",
-      "type": "cosmosDB",
-      "databaseName": "klasser",
-      "collectionName": "laerer",
-      "sqlQuery": "SELECT * from c where c.id = 'kjell'",
-      "PartitionKey": "none",
-      "connectionStringSetting": "klasseadmin-db_DOCUMENTDB"
-  }
+    }
   ]
 }
