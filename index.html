@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Klasseadmin</title>
+    <title>Klasseadministrasjon</title>
     <meta charset="utf-8" />
     <!-- bruker CDN (Content Delivery Network) til å hente Bootstrap-stilarket-->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
@@ -12,19 +12,28 @@
 </style>
 
 <script>
+let laerer_id;
+window.onload = function() {
+    document.getElementById('btn_laerer').onclick = req;
+}
 
-window.onload = (async function() {
-    let { text } = await( await fetch("/api/klasse_data")).json();
-    document.querySelector('#klasse_data').textContent = text;
-}())
+async function req() {
+    laerer_id = document.getElementById('laerer_id').value;
+    let { text } = await( await fetch("/api/klasse_data/"+laerer_id)).json();
+    document.querySelector('#klasse_data').innerHTML = text;
+}
 
 </script>
 </head>
 <body>
 
 <div class='container'>
-    <h1 class='my-3'>Klasseadmin</h1>
-    <p>Data fra API: <b id='klasse_data'></b></p>
+    <h1 class='my-5'>Klasseadministrasjon</h1>
+    <p>skriv inn navn:</p>
+    <input id='laerer_id'></input>
+    <button id='btn_laerer' class='btn btn-lg btn-primary'>Hent klasser</button>
+    <p class='mt-5'>Klasser:</p>
+    <p id='klasse_data'></p>
     
 </div>
 

@@ -1,20 +1,38 @@
 {
   "bindings": [
     {
+      "name": "req",
       "authLevel": "anonymous",
       "type": "httpTrigger",
       "direction": "in",
-      "name": "req",
       "methods": [
         "get",
         "post"
       ],
-      "route": "klasse_data"
+      "route": "klasse_data/{id}"
     },
     {
+      "name": "res",
       "type": "http",
+      "direction": "out"
+    },
+    {
+      "name": "utdata",
       "direction": "out",
-      "name": "res"
-    }
+      "type": "cosmosDB",
+      "databaseName": "klasser",
+      "collectionName": "laerere",
+      "connectionStringSetting": "db-klasseadmin_DOCUMENTDB"
+    },
+    {
+      "name": "inndata",
+      "direction": "in",
+      "type": "cosmosDB",
+      "databaseName": "klasser",
+      "collectionName": "laerere",
+      "sqlQuery": "SELECT c.klasser from c WHERE c.id={id}",
+      "PartitionKey": "none",
+      "connectionStringSetting": "db-klasseadmin_DOCUMENTDB"
+  }
   ]
 }
