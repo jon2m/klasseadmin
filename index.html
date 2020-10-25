@@ -14,8 +14,8 @@
 <script>
 
 window.onload = (async function() {
-    let { text } = await( await fetch("/api/message")).json();
-    document.querySelector('#name').textContent = text;
+    let { text } = await( await fetch("/api/klasse_data")).json();
+    document.querySelector('#klasse_data').textContent = text;
 }())
 
 </script>
@@ -24,7 +24,7 @@ window.onload = (async function() {
 
 <div class='container'>
     <h1 class='my-3'>Klasseadmin</h1>
-    <p>Melding fra API: <b id='name'></b></p>
+    <p>Data fra API: <b id='klasse_data'></b></p>
     
 </div>
 
