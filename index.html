@@ -23,8 +23,8 @@ window.onload = function() {
 }
 
 async function req() {
-    // let klasse_data = await (await fetch("/api/klasse_data/" + laerer_id.value)).json();
-    // consle.log(klasse_data);
+    let klasse_data = await (await fetch("/api/klasse_data/" + laerer_id.value)).json();
+    consle.log(klasse_data);
     let { text } = await( await fetch("/api/klasse_data/"+laerer_id.value)).json();
     document.querySelector('#klasse_data').innerHTML = text;
 }
