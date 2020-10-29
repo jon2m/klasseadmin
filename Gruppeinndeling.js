@@ -1,5 +1,5 @@
 let testKlasse = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27"];
-let testAntall = 15;
+let testAntall = 10;
 let testSortering = "gruppe";
 
 function gruppeInndeling(klasse, antall, inndeling) {    
@@ -24,38 +24,22 @@ function gruppeInndeling(klasse, antall, inndeling) {
         if(lagUtIfra === "gruppe") {
             antallPerGruppe = parseInt(elever.length / delingsantall);
             antallTilOvers = elever.length % delingsantall;
-        }
-        else if(lagUtIfra === "elev") {
-            antallPerGruppe = delingsantall;
-            antallTilOvers = elever.length % antallPerGruppe;
-            delingsantall = parseInt(elever.length / antallPerGruppe);
-        }
 
-        if(parseInt(elever.length / delingsantall) < 2) {
-            let maksMulig = 0;
-            for(let i = 1; i < 1000; i++) {
-                if(parseInt(elever.length / i) > 1) {
-                    maksMulig = i;
+            if(parseInt(elever.length / delingsantall) < 2) {
+                let maksMulig = 0;
+                for(let i = 1; i < 1000; i++) {
+                    if(parseInt(elever.length / i) > 1) {
+                        maksMulig = i;
+                    }
+                    else {
+                        break;
+                    }
                 }
-                else {
-                    break;
-                }
-            }
-            if(lagUtIfra === "gruppe") {
                 delingsantall = maksMulig;
                 antallPerGruppe = parseInt(elever.length / delingsantall);
                 antallTilOvers = elever.length % delingsantall;
             }
-            else if(lagUtIfra === "elev") {
-                antallPerGruppe = maksMulig;
-                antallTilOvers = elever.length % antallPerGruppe;
-            } 
-        }
-        console.log("Antall grupper: " + delingsantall);
-        console.log("Antall per gruppe: " + antallPerGruppe);
-        console.log("Antall til overs: " + antallTilOvers);
 
-        if(lagUtIfra === "gruppe") {
             for(let j = 0; j < delingsantall; j++) {
                 for(let k = 0; k < antallPerGruppe; k++) {
                     let elevNr = Math.floor(Math.random() * elever.length);
@@ -73,12 +57,15 @@ function gruppeInndeling(klasse, antall, inndeling) {
                 ferdigGrupper.push(undergrupper)
                 undergrupper = [];
             }
+
             ferdigGrupper.reverse();
-            console.log(ferdigGrupper);
+            return ferdigGrupper;
         }
+
         else if(lagUtIfra === "elev") {
-            
+            console.log("Under arbeid");
         }
+
     }
 }
 
