@@ -6,6 +6,10 @@
     <meta name="author" content="aamgrim">
     <title></title>
     <style>
+        #cr {
+            margin: 20px;
+        }
+
         .row {
             display: flex;
             flex-flow: row;
@@ -14,16 +18,17 @@
             justify-content: space-around;
         }
 
-        .pair {
+        .table {
             display: flex;
             background-color: lightblue;
             width: 200px;
-            text-align: center;
+            justify-content: center;
         }
 
         .student {
             width: 50%;
             height: 100%;
+            text-align: center;
         }
     </style>
     <script src="klassekart.js"></script>
@@ -32,6 +37,15 @@
 <body>
     <a href="/">Hjem</a>
     <button onClick="generateClassroom(testClass)">Kart</button>
+    <div id="panel">
+        <p>Per bord: <select id="perTable">
+            <option value="1">1 og 1</option>
+            <option value="2" selected>2 og 2</option>
+            <option value="3">3 og 3</option>
+        </select></p>
+        <p>Rader: <input value="5" id="rows" type="number" min="1" max="7"></p>
+        <p>Pulter i bredden: <input value="4" id="columns" type="number" min="1" max="8"></p>
+    </div>
     <main id="cr"></main>
 </body>
 
