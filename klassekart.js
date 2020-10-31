@@ -1,20 +1,33 @@
 const testClass = ["Åmund", "Erik", "Jon", "Sven", "Magnus", "Mikkel", "Anders", "Kåre", "Pål", "Kjell", "Bonsa"];
 
-function generateClassroom(arr) {
-
+function newClassroom() {
     //   Henter strukturen klassekartet skal genereres på
     let perTable = parseInt(document.getElementById("perTable").value);
     let rows = parseInt(document.getElementById("rows").value);
     let columns = parseInt(document.getElementById("columns").value);
 
+    // Kaller funksjonen
+    generateClassroom(testClass,perTable,rows,columns)
+}
+
+function generateClassroom(arr, perTable, rows, columns) {
+    // Fjerner forrige klassekart
     document.getElementById("cr").innerHTML = "";
+
+    // Kopierer klasselista
     let studentsArr = arr.slice(0);
+
+    // Gjør at eleven som må sitte alene er tilfeldig plassert
     if (studentsArr.length % 2 === 1) {
         studentsArr.push(".");
     }
+    // Stokker elevene
     studentsArr = shuffleStudents(studentsArr);
+
+    // Løpetall for elevene
     let studentID = 0;
-    // Lager flexbox-struktur
+
+    // Lager flexbox-struktur og setter inn elevene
 
     // Først radene
     for (let i = 0; i < rows; i++) {
@@ -22,13 +35,14 @@ function generateClassroom(arr) {
         divRow.classList.add("row");
         divRow.id = "row" + i;
         document.getElementById("cr").appendChild(divRow);
-        // Så pultene
+        // Så pultene...
         for (let j = 0; j < columns; j++) {
             let divTable = document.createElement("div");
             divTable.classList.add("table");
             divTable.id = "r" + i + "c" + j;
             document.getElementById("row" + i).appendChild(divTable);
-            // Så elevene
+            // Så elevene...
+            // Dersom elevene sitter 1 og 1 trengs det ikke egne student-divs
             if (perTable === 1) {
                 document.getElementById("r" + i + "c" + j).innerHTML = picker(studentsArr,studentID);
                 studentID++
@@ -58,6 +72,7 @@ function shuffleStudents(arr) {
     return arr;
 }
 
+// Henter ut elev
 function picker(arr,id) {
     picked = (arr[id] !== undefined ? arr[id] : ".");
     return picked;
