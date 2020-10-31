@@ -6,8 +6,13 @@ function newClassroom() {
     let rows = parseInt(document.getElementById("rows").value);
     let columns = parseInt(document.getElementById("columns").value);
 
-    // Kaller funksjonen
-    generateClassroom(testClass,perTable,rows,columns)
+    if (rows * columns < testClass.length + (testClass.length % 2 === 0 ? 0 : 1)) {
+        alert("Klasserommet er for lite i forhold til antall elever.")
+    }
+    else {
+        // Kaller funksjonen
+        generateClassroom(testClass, perTable, rows, columns)
+    }
 }
 
 function generateClassroom(arr, perTable, rows, columns) {
@@ -44,7 +49,7 @@ function generateClassroom(arr, perTable, rows, columns) {
             // Så elevene...
             // Dersom elevene sitter 1 og 1 trengs det ikke egne student-divs
             if (perTable === 1) {
-                document.getElementById("r" + i + "c" + j).innerHTML = picker(studentsArr,studentID);
+                document.getElementById("r" + i + "c" + j).innerHTML = picker(studentsArr, studentID);
                 studentID++
             }
             else {
@@ -52,7 +57,7 @@ function generateClassroom(arr, perTable, rows, columns) {
                     let divStudent = document.createElement("div");
                     divStudent.classList.add("student");
                     divStudent.id = "r" + i + "c" + j + "n" + k;
-                    divStudent.innerHTML = picker(studentsArr,studentID);
+                    divStudent.innerHTML = picker(studentsArr, studentID);
                     studentID++
                     document.getElementById("r" + i + "c" + j).appendChild(divStudent);
                 }
@@ -73,7 +78,7 @@ function shuffleStudents(arr) {
 }
 
 // Henter ut elev
-function picker(arr,id) {
+function picker(arr, id) {
     picked = (arr[id] !== undefined ? arr[id] : ".");
     return picked;
 }
