@@ -6,12 +6,12 @@ function newClassroom() {
     let rows = parseInt(document.getElementById("rows").value);
     let columns = parseInt(document.getElementById("columns").value);
 
-    if (rows * columns < testClass.length + (testClass.length % 2 === 0 ? 0 : 1)) {
-        alert("Klasserommet er for lite i forhold til antall elever.")
+    if (rows * columns < (testClass.length + (testClass.length % 2 === 0 ? 0 : 1))) {
+        alert("Klasserommet er for lite i forhold til antall elever.");
     }
     else {
         // Kaller funksjonen
-        generateClassroom(testClass, perTable, rows, columns)
+        generateClassroom(testClass, perTable, rows, columns);
     }
 }
 
