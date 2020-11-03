@@ -41,7 +41,33 @@
 </head>
 
 <body>
-    <a href="/">Hjem</a>
+    <!-- navigering -->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    
+        <a class="navbar-brand" href="/">Klasseadministrasjon</a>
+    
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav_liste">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="nav_liste">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="/">index</a>
+                <a class="nav-item nav-link" href="klassekart.html">Klassekart</a>
+                <a class="nav-item nav-link" href="velge_tilfeldig_elev.html">Velg elev</a>
+                <a class="nav-item nav-link" href="#">Gruppeinndeling</a>
+                <div class="dropdown">
+                    <a class="nav-item nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown">
+                        Administrer
+                    </a>
+                    <div class="dropdown-menu nav_undermeny">
+                        <a class="dropdown-item" href="#">asdfasdf</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
     <button onClick="newClassroom()">Kart</button>
     <div id="panel">
         <p>Per bord: <select id="perTable">
