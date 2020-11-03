@@ -1,4 +1,4 @@
-const testClass = ["Åmund", "Erik", "Jon", "Sven", "Magnus", "Mikkel", "Anders", "Kåre", "Pål", "Kjell", "Bonsa"];
+const testClass = ["Åmund", "Erik", "Jon", "Sven", "Magnus", "Mikkel", "Anders", "Kåre", "Pål", "Kjell", "Bonsa","Ramapatrikunahussein"];
 
 function newClassroom() {
     //   Henter strukturen klassekartet skal genereres på
@@ -49,7 +49,8 @@ function generateClassroom(arr, perTable, rows, columns) {
             // Så elevene...
             // Dersom elevene sitter 1 og 1 trengs det ikke egne student-divs
             if (perTable === 1) {
-                document.getElementById("r" + i + "c" + j).innerHTML = picker(studentsArr, studentID);
+                divTable.innerHTML = picker(studentsArr, studentID);
+                divTable.style.backgroundImage = "url('pult.png')";
                 studentID++
             }
             else {
@@ -60,6 +61,12 @@ function generateClassroom(arr, perTable, rows, columns) {
                     divStudent.innerHTML = picker(studentsArr, studentID);
                     studentID++
                     document.getElementById("r" + i + "c" + j).appendChild(divStudent);
+                    if (perTable === 2) {
+                        divTable.style.backgroundImage = "url('pultfor2.png')";
+                    }
+                    else {
+                        divTable.style.backgroundImage = "url('pultfor3.png')";
+                    }
                 }
             }
         }
