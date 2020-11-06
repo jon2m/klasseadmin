@@ -16,16 +16,26 @@ var laerer_id;
 
 window.onload = function() {
     laerer_id = document.getElementById('laerer_id');
-    laerer_id.focus();  // fokuserer på inputfeltet
+    laerer_id.focus();      // fokuserer på inputfeltet
     document.getElementById('btn_laerer').onclick = req;
-    onkeydown = function (evt) {    // hvis brukeren trykker på enter
+    onkeydown = function (evt) {        // hvis brukeren trykker på enter
         if (evt.keyCode === 13 && laerer_id === document.activeElement) req();
     }
 }
 
 async function req() {
-    let { text } = await( await fetch("/api/klasse_data/"+laerer_id.value)).json();
-    document.querySelector('#klasse_data').innerHTML = text;
+    if (laerer_id.value !== '') {   // hvis det er skrevet inn noe i inputen
+        let klassekoder = await( await fetch("/api/klasse_data/"+laerer_id.value)).json();  // henter klasser fra API
+        // generer valg av klasser
+        let em = document.getElementById('valg_klassekoder');
+        while (em.lastChild && em.lastChild.value !== '') em.removeChild(em.lastChild);     // sletter alle child-elements
+        for (let i=0; i<klassekoder.length; i++) {
+            let nytt_element = document.createElement('option');
+            nytt_element.value = klassekoder[i];
+            nytt_element.innerHTML = klassekoder[i];
+            em.appendChild(nytt_element);           // legger til nytt options-element
+        }
+    }
 }
 
 </script>
@@ -62,11 +72,16 @@ async function req() {
 <div class='container'>
     <h1 class='my-5'>Klasseadministrasjon</h1>
     <h3 class='ml-1 p-2 bg-info col-2 text-center'>Beta</h3>
-    <p>skriv inn navn:</p>
+    <p>Logg inn:</p>
     <input id='laerer_id'></input>
     <button id='btn_laerer' class='btn btn-md btn-secondary'>Hent klasser</button>
-    <p class='mt-5'>Klasser:</p>
-    <p id='klasse_data'></p>
+
+    <div class="form-group">
+        <label for="valg_klassekoder">Example select</label>
+        <select class="form-control col-lg-6" id="valg_klassekoder">
+            <option value=''>Velg klasse</option>
+        </select>
+    </div>
     
 </div>
 
