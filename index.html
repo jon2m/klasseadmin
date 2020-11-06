@@ -13,6 +13,7 @@
 
 <script>
 var laerer_id;
+var klasse_data;
 
 window.onload = function() {
     laerer_id = document.getElementById('laerer_id');
@@ -24,18 +25,34 @@ window.onload = function() {
 }
 
 async function req() {
-    if (laerer_id.value !== '') {   // hvis det er skrevet inn noe i inputen
-        let klassekoder = await( await fetch("/api/klasse_data/"+laerer_id.value)).json();  // henter klasser fra API
-        // generer valg av klasser
+    if (laerer_id.value !== '') {                   // hvis det er skrevet inn noe i inputen
         let em = document.getElementById('valg_klassekoder');
         while (em.lastChild && em.lastChild.value !== '') em.removeChild(em.lastChild);     // sletter alle child-elements
-        for (let i=0; i<klassekoder.length; i++) {
-            let nytt_element = document.createElement('option');
-            nytt_element.value = klassekoder[i];
-            nytt_element.innerHTML = klassekoder[i];
-            em.appendChild(nytt_element);           // legger til nytt options-element
+        klasse_data = await( await fetch("/api/klasse_data/"+laerer_id.value)).json();  // henter klasser fra API
+
+        if (klasse_data.text !== 'undefined') {          // hvis læreren som ble skrevet inn har klasser
+            let klasseliste = klasse_data.klasser;      // legger klassene til lærer i liste
+            let klassekoder = [];
+            for (let i=0; i<klasseliste.length; i++)    // legger til klassekodene i liste
+                klassekoder.push(klasseliste[i].id);
+            // generer valg av klasser
+            for (let i=0; i<klassekoder.length; i++) {
+                let nytt_element = document.createElement('option');
+                nytt_element.value = klassekoder[i];
+                nytt_element.innerHTML = klassekoder[i];
+                nytt_element.addEventListener('click',presenter_elever);
+                em.appendChild(nytt_element);           // legger til nytt options-element
+            }
         }
     }
+}
+
+function presenter_elever() {
+    let klasse_id = document.getElementById('valg_klassekoder').value;
+    let klasser = klasse_data.klasser;
+    let elever;
+    for (let i=0; i<klasser.length; i++) if (klasser[i].id === klasse_id) elever = klasser[i].elever;
+    document.getElementById('txt_elever').innerHTML = elever;
 }
 
 </script>
@@ -78,11 +95,13 @@ async function req() {
     <button id='btn_laerer' class='btn btn-md btn-secondary'>Hent klasser</button>
 
     <div class="form-group">
-        <label for="valg_klassekoder">Example select</label>
-        <select class="form-control col-lg-6" id="valg_klassekoder">
-            <option value=''>Velg klasse</option>
+        <label for="valg_klassekoder">Velg klasse</label>
+        <select multiple class="form-control col-lg-6" id="valg_klassekoder">
+            <!-- genererte options -->
         </select>
     </div>
+
+    <h3 id='txt_elever'></h3>
     
 </div>
 
