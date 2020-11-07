@@ -1,4 +1,4 @@
-const testClass = ["Åmund", "Erik", "Jon", "Sven", "Magnus", "Mikkel", "Anders", "Kåre", "Pål", "Kjell", "Bonsa"];
+const testClass = ["Åmund", "Kristoffer", "Karl Elias", "Erik", "Jon", "Sven", "Magnus", "Mikkel", "Anders", "Kåre", "Pål", "Kjell", "Bonsa", "Ramapatrikunasitata"];
 
 function newClassroom() {
     //   Henter strukturen klassekartet skal genereres på
@@ -6,11 +6,8 @@ function newClassroom() {
     let rows = parseInt(document.getElementById("rows").value);
     let columns = parseInt(document.getElementById("columns").value);
 
-    if (rows * columns < testClass.length + (testClass.length % 2 === 0 ? 0 : 1)) {
+    if (rows * columns * perTable < testClass.length + (testClass.length % 2 === 0 ? 0 : 1)) {
         alert("Klasserommet er for lite i forhold til antall elever.")
-    }
-    if (rows * columns < (testClass.length + (testClass.length % 2 === 0 ? 0 : 1))) {
-        alert("Klasserommet er for lite i forhold til antall elever.");
     }
     else {
         // Kaller funksjonen
@@ -43,22 +40,18 @@ function generateClassroom(arr, perTable, rows, columns) {
             let divTable = document.createElement("div");
             divTable.classList.add("table");
             divTable.id = "r" + i + "c" + j;
+            divTable.style.maxWidth = (perTable === 1 ? "200px" : "300px");
             document.getElementById("row" + i).appendChild(divTable);
             // Så elevene...
-            // Dersom elevene sitter 1 og 1 trengs det ikke egne student-divs
-            if (perTable === 1) {
-                document.getElementById("r" + i + "c" + j).innerHTML = picker(studentsArr, studentID);
-                studentID++
-            }
-            else {
-                for (let k = 0; k < perTable; k++) {
-                    let divStudent = document.createElement("button");
-                    divStudent.classList.add("student");
-                    divStudent.id = "r" + i + "c" + j + "n" + k;
-                    divStudent.innerHTML = picker(studentsArr, studentID);
+            for (let k = 0; k < perTable; k++) {
+                    let btnStudent = document.createElement("button");
+                    btnStudent.classList.add("student");
+                    btnStudent.id = "r" + i + "c" + j + "n" + k;
+                    btnStudent.innerHTML = picker(studentsArr, studentID);
+                    btnStudent.addEventListener("click", switchPlace);
                     studentID++
-                    document.getElementById("r" + i + "c" + j).appendChild(divStudent);
-                }
+                    btnStudent.style.width = (perTable === 1 ? "100%" : "50%");
+                    document.getElementById("r" + i + "c" + j).appendChild(btnStudent);
             }
         }
     }
@@ -77,4 +70,23 @@ function shuffleStudents(arr) {
 function picker(arr, id) {
     picked = (arr[id] !== undefined ? arr[id] : ".");
     return picked;
+}
+
+var clicks = 0;
+var tempID;
+
+function switchPlace(evt) {
+    if (clicks === 1) {
+        let content1 = evt.target.innerHTML;
+        let content2 = document.getElementById(firstElementID).innerHTML;
+        document.getElementById(firstElementID).innerHTML = content1;
+        document.getElementById(firstElementID).style.backgroundColor = "";
+        evt.target.innerHTML = content2;
+        clicks--;
+    }
+    else {
+        firstElementID = evt.target.id;
+        document.getElementById(firstElementID).style.backgroundColor = "lime";
+        clicks++
+    }
 }

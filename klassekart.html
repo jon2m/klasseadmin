@@ -11,6 +11,9 @@
 
     <title></title>
     <style>
+        main {
+            width: 100%;
+        }
         #cr {
             margin: 20px;
         }
@@ -23,14 +26,28 @@
         }
         .table {
             display: flex;
-            /* background-color: lightblue;
-            width: 200px;
-            justify-content: center; */
+            justify-content: center;
+            padding: 10px;
+            background-color: lightsteelblue;
+            border: grey 2px solid;
         }
         .student {
             width: 50%;
             height: 100%;
             text-align: center;
+            margin: 1px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            transition: 0.3s;
+            background-color: white;
+        }
+        .student:hover {
+            background-color: lightgrey;
+        }
+        .showFullName:hover {
+            width: var(--element-width);
+            transition: 0.3s;
         }
     </style>
     <script src="klassekart.js"></script>
@@ -75,7 +92,9 @@
         <p>Rader: <input value="5" id="rows" type="number" min="1" max="7"></p>
         <p>Pulter i bredden: <input value="4" id="columns" type="number" min="1" max="8"></p>
     </div>
-    <main id="cr"></main>
+    <main>
+        <div id="cr"></div>
+    </main>
 
 
     <!-- javascripten under gjør at CDN fungerer og at elementer i bootstrap-pakka som bruker javascript fungerer -->
