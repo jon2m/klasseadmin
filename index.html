@@ -13,19 +13,46 @@
 
 <script>
 var laerer_id;
+var klasse_data;
 
 window.onload = function() {
     laerer_id = document.getElementById('laerer_id');
-    laerer_id.focus();  // fokuserer på inputfeltet
+    laerer_id.focus();      // fokuserer på inputfeltet
     document.getElementById('btn_laerer').onclick = req;
-    onkeydown = function (evt) {    // hvis brukeren trykker på enter
+    onkeydown = function (evt) {        // hvis brukeren trykker på enter
         if (evt.keyCode === 13 && laerer_id === document.activeElement) req();
     }
 }
 
 async function req() {
-    let { text } = await( await fetch("/api/klasse_data/"+laerer_id.value)).json();
-    document.querySelector('#klasse_data').innerHTML = text;
+    if (laerer_id.value !== '') {                   // hvis det er skrevet inn noe i inputen
+        let em = document.getElementById('valg_klassekoder');
+        while (em.lastChild && em.lastChild.value !== '') em.removeChild(em.lastChild);     // sletter alle child-elements
+        klasse_data = await( await fetch("/api/klasse_data/"+laerer_id.value)).json();  // henter klasser fra API
+
+        if (klasse_data.text !== 'undefined') {          // hvis læreren som ble skrevet inn har klasser
+            let klasseliste = klasse_data.klasser;      // legger klassene til lærer i liste
+            let klassekoder = [];
+            for (let i=0; i<klasseliste.length; i++)    // legger til klassekodene i liste
+                klassekoder.push(klasseliste[i].id);
+            // generer valg av klasser
+            for (let i=0; i<klassekoder.length; i++) {
+                let nytt_element = document.createElement('option');
+                nytt_element.value = klassekoder[i];
+                nytt_element.innerHTML = klassekoder[i];
+                nytt_element.addEventListener('click',presenter_elever);
+                em.appendChild(nytt_element);           // legger til nytt options-element
+            }
+        }
+    }
+}
+
+function presenter_elever() {
+    let klasse_id = document.getElementById('valg_klassekoder').value;
+    let klasser = klasse_data.klasser;
+    let elever;
+    for (let i=0; i<klasser.length; i++) if (klasser[i].id === klasse_id) elever = klasser[i].elever;
+    document.getElementById('txt_elever').innerHTML = elever;
 }
 
 </script>
@@ -45,7 +72,8 @@ async function req() {
             <a class="nav-item nav-link" href="/">index</a>
             <a class="nav-item nav-link" href="klassekart.html">Klassekart</a>
             <a class="nav-item nav-link" href="velge_tilfeldig_elev.html">Velg elev</a>
-            <a class="nav-item nav-link" href="#">Gruppeinndeling</a>
+            <a class="nav-item nav-link" href="Gruppeinndeling.html">Gruppeinndeling</a>
+            <a class="nav-item nav-link" href="Fravær.html">Fravær</a>
             <div class="dropdown">
                 <a class="nav-item nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                     data-toggle="dropdown">
@@ -62,11 +90,18 @@ async function req() {
 <div class='container'>
     <h1 class='my-5'>Klasseadministrasjon</h1>
     <h3 class='ml-1 p-2 bg-info col-2 text-center'>Beta</h3>
-    <p>skriv inn navn:</p>
+    <p>Logg inn:</p>
     <input id='laerer_id'></input>
     <button id='btn_laerer' class='btn btn-md btn-secondary'>Hent klasser</button>
-    <p class='mt-5'>Klasser:</p>
-    <p id='klasse_data'></p>
+
+    <div class="form-group">
+        <label for="valg_klassekoder">Velg klasse</label>
+        <select multiple class="form-control col-lg-6" id="valg_klassekoder">
+            <!-- genererte options -->
+        </select>
+    </div>
+
+    <h3 id='txt_elever'></h3>
     
 </div>
 
