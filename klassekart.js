@@ -52,7 +52,7 @@ function generateClassroom(arr, perTable, rows, columns) {
             }
             else {
                 for (let k = 0; k < perTable; k++) {
-                    let divStudent = document.createElement("div");
+                    let divStudent = document.createElement("button");
                     divStudent.classList.add("student");
                     divStudent.id = "r" + i + "c" + j + "n" + k;
                     divStudent.innerHTML = picker(studentsArr, studentID);
