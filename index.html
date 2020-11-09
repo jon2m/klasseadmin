@@ -27,20 +27,20 @@ window.onload = function() {
 async function req() {
     if (laerer_id.value !== '') {                   // hvis det er skrevet inn noe i inputen
         let em = document.getElementById('valg_klassekoder');
-        while (em.lastChild && em.lastChild.value !== '') em.removeChild(em.lastChild);     // sletter alle child-elements
+        while (em.lastChild) em.removeChild(em.lastChild);     // sletter alle child-elements
         klasse_data = await( await fetch("/api/klasse_data/"+laerer_id.value)).json();  // henter klasser fra API
 
         if (klasse_data.text !== 'undefined') {          // hvis læreren som ble skrevet inn har klasser
-            let klasseliste = klasse_data.klasser;      // legger klassene til lærer i liste
+            let klasseliste = klasse_data.klasser;       // legger klassene til lærer i liste
             let klassekoder = [];
-            for (let i=0; i<klasseliste.length; i++)    // legger til klassekodene i liste
+            for (let i=0; i<klasseliste.length; i++)     // legger til klassekodene i liste
                 klassekoder.push(klasseliste[i].id);
             // generer valg av klasser
             for (let i=0; i<klassekoder.length; i++) {
                 let nytt_element = document.createElement('option');
                 nytt_element.value = klassekoder[i];
                 nytt_element.innerHTML = klassekoder[i];
-                nytt_element.addEventListener('click',presenter_elever);
+                nytt_element.addEventListener('click',presenter_elever);    // legger til hendelseslytter til klassene
                 em.appendChild(nytt_element);           // legger til nytt options-element
             }
         }
@@ -51,6 +51,9 @@ function presenter_elever() {
     let klasse_id = document.getElementById('valg_klassekoder').value;
     let klasser = klasse_data.klasser;
     let elever;
+
+    // legge til angitt klasse i minnet //
+
     for (let i=0; i<klasser.length; i++) if (klasser[i].id === klasse_id) elever = klasser[i].elever;
     document.getElementById('txt_elever').innerHTML = elever;
 }
@@ -74,15 +77,7 @@ function presenter_elever() {
             <a class="nav-item nav-link" href="velge_tilfeldig_elev.html">Velg elev</a>
             <a class="nav-item nav-link" href="Gruppeinndeling.html">Gruppeinndeling</a>
             <a class="nav-item nav-link" href="Fravær.html">Fravær</a>
-            <div class="dropdown">
-                <a class="nav-item nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                    data-toggle="dropdown">
-                    Administrer
-                </a>
-                <div class="dropdown-menu nav_undermeny">
-                    <a class="dropdown-item" href="#">asdfasdf</a>
-                </div>
-            </div>
+            <a class="nav-item nav-link" href="administrasjon.html">Administrasjon</a>
         </div>
     </div>
 </nav>
