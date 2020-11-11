@@ -44,14 +44,24 @@ function generateClassroom(arr, perTable, rows, columns) {
             document.getElementById("row" + i).appendChild(divTable);
             // Så elevene...
             for (let k = 0; k < perTable; k++) {
-                    let btnStudent = document.createElement("button");
-                    btnStudent.classList.add("student");
-                    btnStudent.id = "r" + i + "c" + j + "n" + k;
-                    btnStudent.innerHTML = picker(studentsArr, studentID);
-                    btnStudent.addEventListener("click", switchPlace);
-                    studentID++
-                    btnStudent.style.width = (perTable === 1 ? "100%" : "50%");
-                    document.getElementById("r" + i + "c" + j).appendChild(btnStudent);
+                let btnStudent = document.createElement("button");
+                btnStudent.classList.add("student");
+                btnStudent.id = "r" + i + "c" + j + "n" + k;
+                studentName = picker(studentsArr, studentID);
+                btnStudent.innerHTML = studentName;
+                btnStudent.addEventListener("click", switchPlace);
+                studentID++
+                btnStudent.style.width = (perTable === 1 ? "100%" : "50%");
+
+                // var letterList = studentName.split("");
+                // let fontsize = (perTable === 1 ? 80 : (perTable === 2 ? 80 : 60));
+                // if (letterList.length > 15) {   
+                //     let scaleVal = 1.5;
+                //     document.documentElement.style.setProperty('--scaleVal', scaleVal);
+                // }
+                // document.documentElement.style.setProperty('--skriftstr', fontsize + "%");
+
+                document.getElementById("r" + i + "c" + j).appendChild(btnStudent);
             }
         }
     }

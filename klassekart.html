@@ -14,9 +14,11 @@
         main {
             width: 100%;
         }
+
         #cr {
             margin: 20px;
         }
+
         .row {
             display: flex;
             flex-flow: row;
@@ -24,6 +26,7 @@
             padding-bottom: 40px;
             justify-content: space-around;
         }
+
         .table {
             display: flex;
             justify-content: center;
@@ -31,6 +34,7 @@
             background-color: lightsteelblue;
             border: grey 2px solid;
         }
+
         .student {
             width: 50%;
             height: 100%;
@@ -41,13 +45,13 @@
             text-overflow: ellipsis;
             transition: 0.3s;
             background-color: white;
+            font-size: 100%;
         }
+
         .student:hover {
             background-color: lightgrey;
-        }
-        .showFullName:hover {
-            width: var(--element-width);
-            transition: 0.3s;
+            font-size: 80%;
+            transform: scale(1.3);
         }
     </style>
     <script src="klassekart.js"></script>
