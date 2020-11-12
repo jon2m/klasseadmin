@@ -54,6 +54,6 @@ async function legg_til_klasse(klassekode, elever) {
         "id": klassekode,
         "elever": elever,
     }
-    // klassedata = await( await fetch("/api/legg_til_klasse/"+laerer_id.value)).json();  // sender klassedata til API
+    //  sender klassedata til API //
 
 }
