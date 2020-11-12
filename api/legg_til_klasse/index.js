@@ -4,6 +4,7 @@ module.exports = async function (context, req, utdata) {
     databaseId = 'klasser';
     containerId = 'laerere';
 
+    // setter opp cosoms-klienten
     const CosmosClient = require("@azure/cosmos").CosmosClient;
     const client = new CosmosClient({ endpoint, key });
     const database = client.database(databaseId);
