@@ -85,10 +85,27 @@
                 </div>
             </div>
         </nav>
+        
+        <div class='row col-12'>
+            <h1 class='col-6'>Fravær</h1>
+            <!-- '''' -->
+            <!-- MIDLERTIDIG 'INNLOGGING' --> 
+            <div class='p-2 bg-light col'>
+                <p class='text-left'>Logg inn:</p>
+                <input id='laerer_id'></input>
+                <button id='btn_laerer' class='btn btn-md btn-secondary'>Hent klasser</button>
+            </div>
 
-        <h1>Fravær</h1>
-
-        <hr>
+            <div class='p-2 bg-light col'>
+                <div class="form-group">
+                    <label for="valg_klassekoder">Velg klasse</label>
+                    <select multiple class="form-control col-lg-6" id="valg_klassekoder">
+                        <!-- genererte options -->
+                    </select>
+                </div>
+            </div>
+            <!-- '''' -->
+        </div>
 
         <div id="elevListe">
         </div>
