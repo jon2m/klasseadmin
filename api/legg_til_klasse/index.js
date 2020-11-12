@@ -1,6 +1,4 @@
 module.exports = async function (context, req, utdata) {  
-    endpoint = "https://db-klasseadmin.documents.azure.com:443/";
-    key = "SMSUiPxTLbJV5IBxhhbImLJ9Yu9p5U1LKf7VuUcnO9osKadnmBYH4LzdKrsXXoSpGgLxcRi3sVInV6aHSHeqVw==";
     databaseId = 'klasser';
     containerId = 'laerere';
 
