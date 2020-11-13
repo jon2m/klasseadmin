@@ -1,11 +1,5 @@
-<<<<<<< HEAD
 const testClass = ["Åmund", "Kristoffer", "Karl Elias", "Erik", "Jon", "Sven", "Magnus", "Mikkel", "Anders", "Kåre", "Pål", "Kjell", "Bonsa", "Ramapatrikunasitata"];
 var sleepVar = false;
-=======
-// const testClass = ["Åmund", "Kristoffer", "Karl Elias", "Erik", "Jon", "Sven", "Magnus", "Mikkel", "Anders", "Kåre", "Pål", "Kjell", "Bonsa", "Ramapatrikunasitata"];
-
-var testClass; // deklarerer en variabel som det skal puttes klasser i etter hvert
->>>>>>> 070ca266fb374d546c84999c0b4f282ec5bb08be
 
 function newClassroom() {
     //   Henter strukturen klassekartet skal genereres på
@@ -60,9 +54,6 @@ async function generateClassroom(arr, perTable, rows, columns) {
                 btnStudent.id = "r" + i + "c" + j + "n" + k;
                 studentName = picker(studentsArr, studentID);
                 btnStudent.innerHTML = studentName;
-                data-toggle="tooltip"
-                btnStudent.title = "" + studentName;
-                btnStudent.dataToggle = "tooltip";
                 btnStudent.addEventListener("click", switchPlace);
                 studentID++
                 btnStudent.style.width = (perTable === 1 ? "100%" : "50%");
