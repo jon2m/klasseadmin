@@ -11,12 +11,11 @@
 
     <title></title>
     <style>
-        main {
-            width: 100%;
-        }
-
         #cr {
             margin: 20px;
+            opacity: 0;
+            transition: 1s;
+            width: 100vw;
         }
 
         .row {
@@ -28,15 +27,15 @@
         }
 
         .table {
+            min-width: 5%;
             display: flex;
             justify-content: center;
             padding: 10px;
-            background-color: lightsteelblue;
+            background-color: rgb(143, 141, 141);
             border: grey 2px solid;
         }
 
         .student {
-            width: 50%;
             height: 100%;
             text-align: center;
             margin: 1px;
@@ -77,18 +76,41 @@
             </div>
         </div>
     </nav>
-
-    <button onClick="newClassroom()">Kart</button>
-    <div id="panel">
-        <p>Per bord: <select id="perTable">
-                <option value="1">1 og 1</option>
-                <option value="2" selected>2 og 2</option>
-                <option value="3">3 og 3</option>
-            </select></p>
-        <p>Rader: <input value="5" id="rows" type="number" min="1" max="7"></p>
-        <p>Pulter i bredden: <input value="4" id="columns" type="number" min="1" max="8"></p>
-    </div>
     <main>
+        <button class="btn btn-secondary" onClick="newClassroom()">Kart</button>
+        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
+            Innstilinger <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-sliders" fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd"
+                    d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z" />
+            </svg>
+        </button>
+        <div class="modal fade" id="exampleModal" tabindex="-1">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Innstilinger</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <p>Per bord: <select id="perTable">
+                                    <option value="1">1 og 1</option>
+                                    <option value="2" selected>2 og 2</option>
+                                    <option value="3">3 og 3</option>
+                                </select></p>
+                            <p>Rader: <input value="5" id="rows" type="number" min="1" max="7"></p>
+                            <p>Pulter i bredden: <input value="4" id="columns" type="number" min="1" max="8"></p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Lukk</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="cr"></div>
     </main>
 

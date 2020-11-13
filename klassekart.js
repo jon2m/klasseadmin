@@ -1,4 +1,5 @@
 const testClass = ["Åmund", "Kristoffer", "Karl Elias", "Erik", "Jon", "Sven", "Magnus", "Mikkel", "Anders", "Kåre", "Pål", "Kjell", "Bonsa", "Ramapatrikunasitata"];
+var sleepVar = false;
 
 function newClassroom() {
     //   Henter strukturen klassekartet skal genereres på
@@ -15,8 +16,12 @@ function newClassroom() {
     }
 }
 
-function generateClassroom(arr, perTable, rows, columns) {
+async function generateClassroom(arr, perTable, rows, columns) {
     // Fjerner forrige klassekart
+    document.getElementById("cr").style.opacity = "0";
+    if (sleepVar) {
+        await new Promise(r => setTimeout(r, 2000));
+    }
     document.getElementById("cr").innerHTML = "";
     // Kopierer klasselista
     let studentsArr = arr.slice(0);
@@ -49,22 +54,18 @@ function generateClassroom(arr, perTable, rows, columns) {
                 btnStudent.id = "r" + i + "c" + j + "n" + k;
                 studentName = picker(studentsArr, studentID);
                 btnStudent.innerHTML = studentName;
+                data-toggle="tooltip"
+                btnStudent.title = "" + studentName;
+                btnStudent.dataToggle = "tooltip";
                 btnStudent.addEventListener("click", switchPlace);
                 studentID++
                 btnStudent.style.width = (perTable === 1 ? "100%" : "50%");
-
-                // var letterList = studentName.split("");
-                // let fontsize = (perTable === 1 ? 80 : (perTable === 2 ? 80 : 60));
-                // if (letterList.length > 15) {   
-                //     let scaleVal = 1.5;
-                //     document.documentElement.style.setProperty('--scaleVal', scaleVal);
-                // }
-                // document.documentElement.style.setProperty('--skriftstr', fontsize + "%");
-
                 document.getElementById("r" + i + "c" + j).appendChild(btnStudent);
             }
         }
     }
+    document.getElementById("cr").style.opacity = "1";
+    sleepVar = true;
 }
 // Durstenfelds sorteringsalgoritme
 function shuffleStudents(arr) {
