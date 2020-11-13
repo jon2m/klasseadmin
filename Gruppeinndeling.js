@@ -3,12 +3,12 @@ let testKlasse = ["Adrian","Alexandra","Amalie","Ane","Anton","Cornelius","Elias
 
 function gruppe() {
     let sortering = document.getElementById("sortering").value;
-    console.log(sortering);
     let antall = document.getElementById("antall").value;
-    console.log(antall);
     let returnerGrupper = gruppeInndeling(testKlasse, antall, sortering);
-    console.log(returnerGrupper);
     let antallGrupper = returnerGrupper.length;
+
+    document.getElementById("gruppeomraade").innerHTML = "";
+    $('#collapseOne').collapse();
 
     for(let n = 0; n < antallGrupper; n++) {
         let gruppeDiv = document.createElement("div");
@@ -36,7 +36,6 @@ function gruppe() {
             document.getElementById("elevliste" + (n+1)).appendChild(elevElement);
         }
     }
-    $('.collapse').collapse();
 }
 
 function gruppeInndeling(klasse, antall, inndeling) {    
@@ -48,7 +47,7 @@ function gruppeInndeling(klasse, antall, inndeling) {
     }
     else {
         let lagUtIfra = inndeling;                                                              //Forteller programmet om den skal lage ut ifra "elev" eller "gruppe"
-        let elever = klasse;                                                                    //Henter inn klassen
+        let elever = klasse.slice(0);                                                                    //Henter inn klassen
         delingsantall = Math.abs(delingsantall);                                                //Finner absoluttverdi, slik at negative tall ikke skal ødelegge
         
         let antallPerGruppe = 0;                                                                //Initsialisering
