@@ -74,6 +74,7 @@ function shuffleStudents(arr) {
     }
     return arr;
 }
+
 // Henter ut elev
 function picker(arr, id) {
     picked = (arr[id] !== undefined ? arr[id] : ".");
