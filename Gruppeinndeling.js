@@ -1,7 +1,43 @@
-//Linje 2, 3 og 4 fjernes når frontend lages!
-let testKlasse = ["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29"];
-let testSortering = "elev";
-let testAntall = 5;
+//Linje 2 fjernes når frontend lages!
+let testKlasse = ["Adrian","Alexandra","Amalie","Ane","Anton","Cornelius","Elias","Erik","Even","Gaute","Ida","Julianne","Kristin","Lisa","Malin","Marius","Martin","Mia","Sebastian","Signe Emilie","Sondre","Synne","Thea","Tina","Vildan","Åmund","Jon","Kjell","Sven"];
+
+function gruppe() {
+    let sortering = document.getElementById("sortering").value;
+    console.log(sortering);
+    let antall = document.getElementById("antall").value;
+    console.log(antall);
+    let returnerGrupper = gruppeInndeling(testKlasse, antall, sortering);
+    console.log(returnerGrupper);
+    let antallGrupper = returnerGrupper.length;
+
+    for(let n = 0; n < antallGrupper; n++) {
+        let gruppeDiv = document.createElement("div");
+        gruppeDiv.id = "gruppe" + (n+1);
+        gruppeDiv.className = "alleGrupper";
+        document.getElementById("gruppeomraade").appendChild(gruppeDiv);
+
+        let gruppeNavn = document.createElement("h2");
+        gruppeNavn.innerHTML = "Gruppe " + (n+1) + ":";
+        document.getElementById("gruppe" + (n+1)).appendChild(gruppeNavn);
+
+        let avstand = document.createElement("br");
+        document.getElementById("gruppe" + (n+1)).appendChild(avstand);
+
+        let liste = document.createElement("ul");
+        liste.id = "elevliste" + (n+1);
+        document.getElementById("gruppe" + (n+1)).appendChild(liste);
+
+        let undergruppe = returnerGrupper[n];
+        let lengdeUndergruppe = undergruppe.length;
+        for(let o = 0; o < lengdeUndergruppe; o++) {
+            let elevElement = document.createElement("li");
+            elevElement.id = undergruppe[o];
+            elevElement.innerHTML = undergruppe[o];
+            document.getElementById("elevliste" + (n+1)).appendChild(elevElement);
+        }
+    }
+    $('.collapse').collapse();
+}
 
 function gruppeInndeling(klasse, antall, inndeling) {    
     let delingsantall = antall;
@@ -106,6 +142,3 @@ function gruppeInndeling(klasse, antall, inndeling) {
         }
     }
 }
-
-//Fjernes når frontend lages!
-console.log(gruppeInndeling(testKlasse, testAntall, testSortering));

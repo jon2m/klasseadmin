@@ -6,6 +6,32 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     </head>
+    <script src="Gruppeinndeling.js"></script>
+    <style>
+        body {
+            height: 100vh;
+        }
+
+        #gruppeomraade {
+            display: flex;
+            flex-wrap: wrap;
+            flex: 1 1 auto;
+            background-color: gray;
+        }
+
+        .alleGrupper {
+            margin: 10px;
+            padding: 10px;
+            border: 3px solid black;
+            background-color: beige;
+            border-radius: 15px;
+            flex: 1 1 auto;
+        }
+
+        li {
+            font-size: 20px;
+        }
+    </style>
 
     <body>
         <nav class="navbar navbar-expand-md navbar-dark bg-dark">
@@ -28,7 +54,49 @@
         </nav>
 
         <h1>Gruppeinndeling</h1>
-        <p>Ikke ferdig lagd, må få noe pent :)</p>
+
+        <hr>
+        
+        <div class="accordion" id="accordionExample">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h2 class="mb-0">
+                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <h5>Lag grupper</h5>
+                        </button>
+                    </h2>
+                </div>
+        
+                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                    
+                        <form style="padding: 0px 15px;">
+                            <div class="form-group">
+                                <label for="sortering">Inndeling</label>
+                                <select class="custom-select" id="sortering">
+                                    <option value="gruppe">Gruppe</option>
+                                    <option value="elev">Elever</option>
+                                </select>
+                                <small id="help" class="form-text text-muted">Inndeling ut fra antall elever per gruppe eller antall grupper</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1">Antall</label>
+                                <input id="antall" type="number" class="form-control" id="exampleFormControlInput1">
+                                <small id="help" class="form-text text-muted">Antall av det du valgte som inndeling</small>
+                            </div>
+                            <button onclick="gruppe()" type="button" class="btn btn-primary">Lag gruppe</button>
+                            <button onclick="location.reload()" type="button" class="btn btn-primary">Fjern grupper</button>
+                        </form>
+            
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+        
+        <div id="gruppeomraade"></div>
 
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"

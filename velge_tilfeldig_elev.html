@@ -11,45 +11,7 @@
     <style>
     </style>
 
-    <script>
-
-    var antall_elever;
-    var eksempel_elever = ['jon','åmund','erik','kjell','1234','asdfasfd','qwer'];
-    var nytt_em;
-    var tilfeldig_valgt_elev;
-    var tilfeldig_index;
-    var jobbe_liste_elever; // liste som det kan slettes elever fra under utvalg
-    var em;
-
-    window.onload = function () {
-        antall_elever = document.getElementById('antall_elever');
-        antall_elever.focus();  // fokuserer på inputfeltet
-        document.getElementById('btn_elever').onclick = velg_elever;
-        onkeydown = function (evt) {    // hvis brukeren trykker på enter
-            if (evt.keyCode === 13 && antall_elever === document.activeElement) velg_elever();
-        }
-    }
-
-    function velg_elever() {
-        em = document.getElementById('elev_utvalg');
-        while (em.lastChild) em.removeChild(em.lastChild);   // sletter alle child-elements
-        // lager egen liste av elever til å hente og slette elementer fra
-        jobbe_liste_elever = eksempel_elever.slice(0);
-        antall = (+antall_elever.value < eksempel_elever.length ? +antall_elever.value : eksempel_elever.length);
-
-        for (var i=0; i<antall; i++) {
-            tilfeldig_index = Math.floor((Math.random() * jobbe_liste_elever.length));  // tilfeldig valg av 
-            tilfeldig_valgt_elev = jobbe_liste_elever[tilfeldig_index];                 // elev fra klasse
-            jobbe_liste_elever.splice(tilfeldig_index,1);
-            // genererer nytt element
-            nytt_em = document.createElement('div');
-            nytt_em.innerHTML = "<p>"+tilfeldig_valgt_elev+"</p>";   
-            nytt_em.className = 'col-3 p-1';
-            document.getElementById('elev_utvalg').appendChild(nytt_em);
-        }
-    }
-
-    </script>
+<script src='velge_tilfeldig_elev.js'></script>
 </head>
 
 <body>
@@ -72,6 +34,22 @@
             </div>
         </div>
     </nav>
+
+    <!-- '''' -->
+    <!-- MIDLERTIDIG 'INNLOGGING' -->  
+    <div class='p-2 bg-light col-6'>
+        <p>Logg inn:</p>
+        <input id='laerer_id'></input>
+        <button id='btn_laerer' class='btn btn-md btn-secondary'>Hent klasser</button>
+
+        <div class="form-group">
+            <label for="valg_klassekoder">Velg klasse</label>
+            <select multiple class="form-control col-lg-6" id="valg_klassekoder">
+                <!-- genererte options -->
+            </select>
+        </div>
+    </div>
+    <!-- '''' -->
 
     <!-- hovedinnhold -->
     <div class='container'>

@@ -13,11 +13,12 @@ window.onload = function() {
 
     laerer.focus();
 
-    btn_laerer.onclick = hent_klasser;    // hente klasser når lærer 'logger inn'
+btn_laerer.onclick = hent_klasser;                                      // hente klasser når lærer 'logger inn'
     onkeydown = function (evt) {
-        if (evt.keyCode === 13) {        // hvis brukeren trykker på enter
+        if (evt.keyCode === 13) {                                       // hvis brukeren trykker på enter
             if (laerer === document.activeElement) hent_klasser();
-            else if (ny_klassekode === document.activeElement) nye_elever.focus();  // fokusere på neste input
+            else if (ny_klassekode === document.activeElement) 
+                nye_elever.focus();                                     // fokusere på neste input
         }
     }
 
@@ -37,9 +38,9 @@ function tekstbehandling() {
         
         let j = 0;
         while (j<elever[i].length) {
-            elever[i][j] = elever[i][j].split('\n').join('');       // tar bort linjeskift
+            elever[i][j] = elever[i][j].split('\n').join('');           // tar bort linjeskift
             if (elever[i][j] === '')
-                elever[i].splice(j,1);           // sletter tomme elementer
+                elever[i].splice(j,1);                                  // sletter tomme elementer
             else j++;
         }
         elever[i] = elever[i].join(' ');                                // setter de sammmen igjen med mellomrom mellom
@@ -53,6 +54,6 @@ async function legg_til_klasse(klassekode, elever) {
         "id": klassekode,
         "elever": elever,
     }
-    // klassedata = await( await fetch("/api/legg_til_klasse/"+laerer_id.value)).json();  // sender klassedata til API
+    //  sender klassedata til API //
 
 }
