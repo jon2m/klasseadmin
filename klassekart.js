@@ -1,4 +1,4 @@
-const testClass = ["Åmund", "Kristoffer", "Karl Elias", "Erik", "Jon", "Sven", "Magnus", "Mikkel", "Anders", "Kåre", "Pål", "Kjell", "Bonsa", "Ramapatrikunasitata"];
+// const testClass = ["Åmund", "Kristoffer", "Karl Elias", "Erik", "Jon", "Sven", "Magnus", "Mikkel", "Anders", "Kåre", "Pål", "Kjell", "Bonsa", "Ramapatrikunasitata"];
 var sleepVar = false;
 
 function newClassroom() {
@@ -148,5 +148,5 @@ function legg_til_klasse() {
 
     for (let i=0; i<klasser.length; i++)    // kjører gjennom klassene til læreren og finner den med riktig id
         if (klasser[i].id === klasse_id) testClass = klasser[i].elever;
-    console.log(testClass);
+    // console.log(testClass);
 }
