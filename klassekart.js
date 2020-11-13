@@ -1,4 +1,5 @@
 // const testClass = ["Åmund", "Kristoffer", "Karl Elias", "Erik", "Jon", "Sven", "Magnus", "Mikkel", "Anders", "Kåre", "Pål", "Kjell", "Bonsa", "Ramapatrikunasitata"];
+var testClass;
 var sleepVar = false;
 
 function newClassroom() {

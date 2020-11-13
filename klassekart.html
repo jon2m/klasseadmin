@@ -78,14 +78,39 @@
         </div>
     </nav>
     <main>
-        <button class="btn btn-secondary" onClick="newClassroom()">Kart</button>
-        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
-            Innstilinger <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-sliders" fill="currentColor"
-                xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd"
-                    d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z" />
-            </svg>
-        </button>
+        <div class='row'>
+            <div class='col-6'>
+                <button class="btn btn-secondary" onClick="newClassroom()">Kart</button>
+                <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
+                    Innstilinger <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-sliders" fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd"
+                            d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- '''' -->
+            <!-- MIDLERTIDIG 'INNLOGGING' -->
+            <div class='p-2 bg-light col'>
+                <p class='text-left'>Logg inn:</p>
+                <input id='laerer_id'></input>
+                <button id='btn_laerer' class='btn btn-md btn-secondary'>Hent klasser</button>
+            </div>
+            
+            <div class='p-2 bg-light col'>
+                <div class="form-group">
+                    <label for="valg_klassekoder">Velg klasse</label>
+                    <select multiple class="form-control col-lg-6" id="valg_klassekoder">
+                        <!-- genererte options -->
+                    </select>
+                </div>
+            </div>
+            <!-- '''' -->
+        </div>
+
+
+        <!-- modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1">
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">
@@ -112,7 +137,8 @@
                 </div>
             </div>
         </div>
-        <div id="cr"></div>
+
+        <div id="cr" class='col-12'></div>
     </main>
 
 
