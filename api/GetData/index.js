@@ -1,4 +1,4 @@
-module.exports = async function (context, inndata) { // tar inn databasekoblingen som parameter 'inndata'
+module.exports = async function (context, req, inndata) { // tar inn databasekoblingen som parameter 'inndata'
     var id = context.bindingData.id;
     if (typeof(inndata[0]) !== "undefined") {   // hvis det finnes data i db under gitt id
         context.res = {
