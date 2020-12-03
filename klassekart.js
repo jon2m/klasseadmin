@@ -140,8 +140,8 @@ async function req() {
                 em.appendChild(nytt_element);           // legger til nytt options-element
             }
         }
+        document.querySelector("#loader").style.visibility = "hidden";
     }
-    document.querySelector("#loader").style.visibility = "hidden";
 }
 
 function legg_til_klasse() {
