@@ -121,7 +121,7 @@ window.onload = function () {
 
 async function req() {
     if (laerer_id.value !== '') {
-        document.querySelector("#loader").style.display = "visible";                   // hvis det er skrevet inn noe i inputen
+        document.querySelector("#loader").style.visibility = "visible";                   // hvis det er skrevet inn noe i inputen
         let em = document.getElementById('valg_klassekoder');
         while (em.lastChild) em.removeChild(em.lastChild);     // sletter alle child-elements
         klasse_data = await (await fetch("/api/klasse_data/" + laerer_id.value)).json();  // henter klasser fra API
