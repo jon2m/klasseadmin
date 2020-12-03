@@ -116,11 +116,11 @@ window.onload = function () {
     document.getElementById('btn_laerer').onclick = req;
     onkeydown = function (evt) {        // hvis brukeren trykker på enter
         if (evt.keyCode === 13 && laerer_id === document.activeElement) req();
-        document.querySelector("#loader").style.visibility = "visible";
     }
 }
 
 async function req() {
+    document.querySelector("#loader").style.visibility = "visible";
     if (laerer_id.value !== '') {                   // hvis det er skrevet inn noe i inputen
         let em = document.getElementById('valg_klassekoder');
         while (em.lastChild) em.removeChild(em.lastChild);     // sletter alle child-elements
