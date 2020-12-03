@@ -141,7 +141,7 @@ async function req() {
             }
         }
     }
-    document.querySelector("#loader").style.visibility = "hidden";
+    // document.querySelector("#loader").style.visibility = "hidden";
 }
 
 function legg_til_klasse() {
