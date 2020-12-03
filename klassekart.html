@@ -52,6 +52,30 @@
             font-size: 80%;
             transform: scale(1.3);
         }
+
+        #loader {
+            border: 12px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 12px solid #444444;
+            width: 70px;
+            height: 70px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .center {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
     </style>
     <script src="innlogging.js"></script>
     <script src="klassekart.js"></script>
@@ -82,8 +106,8 @@
             <div class='col-6'>
                 <button class="btn btn-secondary" onClick="newClassroom()">Kart</button>
                 <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
-                    Innstilinger <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-sliders" fill="currentColor"
-                        xmlns="http://www.w3.org/2000/svg">
+                    Innstilinger <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-sliders"
+                        fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
                             d="M11.5 2a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM9.05 3a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0V3h9.05zM4.5 7a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM2.05 8a2.5 2.5 0 0 1 4.9 0H16v1H6.95a2.5 2.5 0 0 1-4.9 0H0V8h2.05zm9.45 4a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zm-2.45 1a2.5 2.5 0 0 1 4.9 0H16v1h-2.05a2.5 2.5 0 0 1-4.9 0H0v-1h9.05z" />
                     </svg>
@@ -97,7 +121,7 @@
                 <input id='laerer_id'></input>
                 <button id='btn_laerer' class='btn btn-md btn-secondary'>Hent klasser</button>
             </div>
-            
+
             <div class='p-2 bg-light col'>
                 <div class="form-group">
                     <label for="valg_klassekoder">Velg klasse</label>
@@ -139,6 +163,7 @@
         </div>
 
         <div id="cr" class='col-12'></div>
+        <div id="loader" class="center"></div>
     </main>
 
 
