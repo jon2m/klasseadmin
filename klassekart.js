@@ -110,7 +110,7 @@ var laerer_id;
 var klasse_data;
 
 window.onload = function () {
-    document.querySelector("#loader").style.display = "none";
+    document.querySelector("#loader").style.visibility = "hidden";
     laerer_id = document.getElementById('laerer_id');
     laerer_id.focus();      // fokuserer på inputfeltet
     document.getElementById('btn_laerer').onclick = req;
@@ -120,8 +120,8 @@ window.onload = function () {
 }
 
 async function req() {
-    document.querySelector("#loader").style.visibility = "visible";
-    if (laerer_id.value !== '') {                   // hvis det er skrevet inn noe i inputen
+    if (laerer_id.value !== '') {
+        document.querySelector("#loader").style.display = "visible";                   // hvis det er skrevet inn noe i inputen
         let em = document.getElementById('valg_klassekoder');
         while (em.lastChild) em.removeChild(em.lastChild);     // sletter alle child-elements
         klasse_data = await (await fetch("/api/klasse_data/" + laerer_id.value)).json();  // henter klasser fra API
@@ -141,7 +141,7 @@ async function req() {
             }
         }
     }
-    document.querySelector("#loader").style.display = "none";
+    document.querySelector("#loader").style.visibility = "hidden";
 }
 
 function legg_til_klasse() {
