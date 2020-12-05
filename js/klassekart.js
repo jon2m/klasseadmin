@@ -1,10 +1,12 @@
 // const testClass = ["Åmund", "Kristoffer", "Karl Elias", "Erik", "Jon", "Sven", "Magnus", "Mikkel", "Anders", "Kåre", "Pål", "Kjell", "Bonsa", "Ramapatrikunasitata"];
 var testClass;
 var sleepVar = false;
+var clicks = 0;
+var tempID;
 
 function newClassroom() {
-    //   Henter strukturen klassekartet skal genereres på
-    let perTable = parseInt(document.getElementById("perTable").value);
+
+    let perTable = parseInt(document.getElementById("perTable").value);     // Henter strukturen klassekartet skal genereres på
     let rows = parseInt(document.getElementById("rows").value);
     let columns = parseInt(document.getElementById("columns").value);
 
@@ -12,50 +14,46 @@ function newClassroom() {
         alert("Klasserommet er for lite i forhold til antall elever.")
     }
     else {
-        // Kaller funksjonen
-        generateClassroom(testClass, perTable, rows, columns);
+        generateClassroom(testClass, perTable, rows, columns);  // Kaller funksjonen
     }
 }
 
 async function generateClassroom(arr, perTable, rows, columns) {
-    // Fjerner forrige klassekart
-    document.getElementById("cr").style.opacity = "0";
+    document.getElementById("cr").style.opacity = "0";  // Fjerner forrige klassekart
     if (sleepVar) {
         await new Promise(r => setTimeout(r, 2000));
     }
     document.getElementById("cr").innerHTML = "";
-    // Kopierer klasselista
-    let studentsArr = arr.slice(0);
-    // Gjør at eleven som må sitte alene er tilfeldig plassert
-    if (studentsArr.length % 2 === 1) {
+    let studentsArr = arr.slice(0);     // Kopierer klasselista
+
+    if (studentsArr.length % 2 === 1) {     // Gjør at eleven som må sitte alene er tilfeldig plassert
         studentsArr.push(".");
     }
-    // Stokker elevene
-    studentsArr = shuffleStudents(studentsArr);
-    // Løpetall for elevene
-    let studentID = 0;
-    // Lager flexbox-struktur og setter inn elevene
-    // Først radene
-    for (let i = 0; i < rows; i++) {
+
+    studentsArr = shuffleStudents(studentsArr);     // Stokker elevene
+
+    let studentID = 0; // Løpetall for elevene
+    for (let i = 0; i < rows; i++) {    // Lager flexbox-struktur og setter inn elevene
+        // Først radene
         let divRow = document.createElement("div");
         divRow.classList.add("row");
         divRow.id = "row" + i;
         document.getElementById("cr").appendChild(divRow);
-        // Så pultene...
+        // Så pultene
         for (let j = 0; j < columns; j++) {
             let divTable = document.createElement("div");
             divTable.classList.add("table");
             divTable.id = "r" + i + "c" + j;
             divTable.style.maxWidth = (perTable === 1 ? "200px" : "300px");
             document.getElementById("row" + i).appendChild(divTable);
-            // Så elevene...
+            // Så elevene
             for (let k = 0; k < perTable; k++) {
                 let btnStudent = document.createElement("button");
                 btnStudent.classList.add("student");
                 btnStudent.id = "r" + i + "c" + j + "n" + k;
                 studentName = picker(studentsArr, studentID);
                 btnStudent.innerHTML = studentName;
-                btnStudent.addEventListener("click", switchPlace);
+                btnStudent.addEventListener("click", switchPlace);      // legger til hendelseslytter på elevene så man kan bytte plasser
                 studentID++
                 btnStudent.style.width = (perTable === 1 ? "100%" : "50%");
                 document.getElementById("r" + i + "c" + j).appendChild(btnStudent);
@@ -65,6 +63,7 @@ async function generateClassroom(arr, perTable, rows, columns) {
     document.getElementById("cr").style.opacity = "1";
     sleepVar = true;
 }
+
 // Durstenfelds sorteringsalgoritme
 function shuffleStudents(arr) {
     for (var i = arr.length - 1; i > 0; i--) {
@@ -82,9 +81,8 @@ function picker(arr, id) {
     return picked;
 }
 
-var clicks = 0;
-var tempID;
 
+// Funksjon for å bytte plasser
 function switchPlace(evt) {
     if (clicks === 1) {
         let content1 = evt.target.innerHTML;
@@ -120,8 +118,8 @@ window.onload = function () {
 }
 
 async function req() {
-    if (laerer_id.value !== '') {
-        document.querySelector("#loader").style.display = "block";                   // hvis det er skrevet inn noe i inputen
+    if (laerer_id.value !== '') {   // hvis det er skrevet inn noe i inputen
+        document.querySelector("#loader").style.display = "block";                  
         let em = document.getElementById('valg_klassekoder');
         while (em.lastChild) em.removeChild(em.lastChild);     // sletter alle child-elements
         klasse_data = await (await fetch("/api/klasse_data/" + laerer_id.value)).json();  // henter klasser fra API
