@@ -5,18 +5,20 @@
         <meta charset='utf-8' />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <script src="./js/Gruppeinndeling.js"></script>
     <style>
         body {
-            height: 100vh;
+            height: 100%;
+            margin: 0px;
         }
 
         #gruppeomraade {
             display: flex;
             flex-wrap: wrap;
             flex: 1 1 auto;
-            background-color: gray;
+            margin-bottom: 250px;
         }
 
         .alleGrupper {
@@ -30,6 +32,26 @@
 
         li {
             font-size: 20px;
+        }
+
+        main {
+            padding: 15px;
+            min-height: calc(100vh - 56px);
+            margin: 0 auto -250px;
+        }
+
+        footer { /*Verdi for footer*/
+            background: linear-gradient(to bottom, #242f40 0%, #0e1219 100%);
+            height: 250px;
+            width: 100%;
+            text-align: center;
+            padding: 45px;
+        }
+
+        footer .row>div a, footer .row>div p { /*Verdiene til skriften i footer*/
+            font-size: 1.25rem;
+            color: #f1f1f1;
+            text-decoration: none;
         }
     </style>
 
@@ -53,50 +75,80 @@
             </div>
         </nav>
 
-        <h1>Gruppeinndeling</h1>
+        <main>
+            <h1>Gruppeinndeling</h1>
 
-        <hr>
-        
-        <div class="accordion" id="accordionExample">
-            <div class="card">
-                <div class="card-header" id="headingOne">
-                    <h2 class="mb-0">
-                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            <h5>Lag grupper</h5>
-                        </button>
-                    </h2>
-                </div>
-        
-                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                    <div class="card-body">
-                    
-                        <form style="padding: 0px 15px;">
-                            <div class="form-group">
-                                <label for="sortering">Inndeling</label>
-                                <select class="custom-select" id="sortering">
-                                    <option value="gruppe">Gruppe</option>
-                                    <option value="elev">Elever</option>
-                                </select>
-                                <small id="help" class="form-text text-muted">Inndeling ut fra antall elever per gruppe eller antall grupper</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="exampleFormControlInput1">Antall</label>
-                                <input id="antall" type="number" class="form-control" id="exampleFormControlInput1">
-                                <small id="help" class="form-text text-muted">Antall av det du valgte som inndeling</small>
-                            </div>
-                            <button onclick="gruppe()" type="button" class="btn btn-primary">Lag gruppe</button>
-                            <!--<button onclick="location.reload()" type="button" class="btn btn-primary">Fjern grupper</button>-->
-                        </form>
+            <hr>
             
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                <h5>Lag grupper</h5>
+                            </button>
+                        </h2>
+                    </div>
+            
+                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div class="card-body">
+                        
+                            <form style="padding: 0px 15px;">
+                                <div class="form-group">
+                                    <label for="sortering">Inndeling</label>
+                                    <select class="custom-select" id="sortering">
+                                        <option value="gruppe">Gruppe</option>
+                                        <option value="elev">Elever</option>
+                                    </select>
+                                    <small id="help" class="form-text text-muted">Inndeling ut fra antall elever per gruppe eller antall grupper</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleFormControlInput1">Antall</label>
+                                    <input id="antall" type="number" class="form-control" id="exampleFormControlInput1">
+                                    <small id="help" class="form-text text-muted">Antall av det du valgte som inndeling</small>
+                                </div>
+                                <button onclick="gruppe()" type="button" class="btn btn-primary">Lag gruppe</button>
+                                <!--<button onclick="location.reload()" type="button" class="btn btn-primary">Fjern grupper</button>-->
+                            </form>
+                
 
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <hr>
-        
-        <div id="gruppeomraade"></div>
+            <hr>
+            
+            <div id="gruppeomraade"></div>
+        </main>
+
+        <footer>
+			<div class="container">
+				<div class="row">
+					<div class="col-sm" style="padding: 0px 50px;">
+                        <p>Kontakt oss:</p>
+                        <hr style="background-color: white;">
+						<a href="mailto:aamgrim@gmail.no?subject=ClassyLearn"><p><i class="fa fa-envelope"></i> aamgrim@gmail.no</p></a>
+						<a href="mailto:erik.haave@hotmail.no?subject=ClassyLearn"><p><i class="fa fa-envelope"></i> erik.haave@hotmail.no</p></a>
+						<a href="mailto:jon.tomter@gmail.com?subject=ClassyLearn"><p><i class="fa fa-envelope"></i> jon.tomter@gmail.com</p></a>
+					</div>
+					<div class="col-sm" style="padding: 0px 50px;">
+                        <p>Copyright ©2021:</p>
+                        <hr style="background-color: white;">
+                        <p>Åmund Grimstad</p>
+                        <p>Erik Masovn Haave</p>
+                        <p>Jon Tomter</p>
+					</div>
+					<div class="col-sm" style="padding: 0px 50px;">
+                        <p>Produkter brukt:</p>
+                        <hr style="background-color: white;">
+						<a href="https://getbootstrap.com/" target="_blank"><p><i class="fa fa-bold"></i> Bootstrap</p></a>
+                        <a href="https://fontawesome.com/" target="_blank"><p><i class="fa fa-font-awesome"></i> Font Awesome</p></a>
+                        <a href="https://azure.microsoft.com/en-us/" target="_blank"><p><i class="fa fa-windows"></i> Microsoft Azure</p></a>
+					</div>
+				</div>
+			</div>
+		</footer>
 
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
         integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
