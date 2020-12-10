@@ -46,7 +46,7 @@ function legg_til_klasse() {
             try {
                 document.getElementById('valgt_klasse').innerHTML = klasse_id;  // viser hvilken klasse som er valgt
             }
-            catch {
+            catch(err) {
                 return
             }
         }
