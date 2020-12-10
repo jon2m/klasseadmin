@@ -44,9 +44,11 @@ function legg_til_klasse() {
         if (klasser[i].id === klasse_id) {
             elever = klasser[i].elever;
             try {
-                document.getElementById('valgt_klasse').innerHTML = klasse_id;  // viser hvilken klasse som er valgt
+                document.getElementById('valgt_klasse').innerHTML = klasse_id; // viser hvilken klasse som er valgt
+                console.log("hei"); 
             }
-            catch(err) {
+            catch (err) {
+                console.log("hei");
                 return
             }
         }
