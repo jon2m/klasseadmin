@@ -34,7 +34,6 @@ async function req() {
 }
 
 function legg_til_klasse() {
-    let valgt_klasse = document.getElementById('valgt_klasse').innerHTML;
     let klasse_id = document.getElementById('valg_klassekoder').value;
     let klasser = klasse_data.klasser;
     let elever;
@@ -44,6 +43,11 @@ function legg_til_klasse() {
     for (let i = 0; i < klasser.length; i++)    // kjører gjennom klassene til læreren og finner den med riktig id
         if (klasser[i].id === klasse_id) {
             elever = klasser[i].elever;
-            valgt_klasse = klasse_id; // viser hvilken klasse som er valgt
+            try {
+                document.getElementById('valgt_klasse').innerHTML = klasse_id;  // viser hvilken klasse som er valgt
+            }
+            catch {
+                return
+            }
         }
 }
