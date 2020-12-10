@@ -26,13 +26,13 @@ module.exports = async function (context) {
     // response
     if (typeof (items[0]) !== "undefined") {   // hvis det finnes data i db under gitt id
         context.res = {
-            body: items[0]        // sender response med klassene til læreren med IDen {id}
+            body: items[0]      // sender response med klassene til læreren med IDen {id}
         }
     }
     else context.res = {
         body: {
             text: 'undefined',
-            status: 400
+            status: 400         // fant ikke
         }
     }
 }
