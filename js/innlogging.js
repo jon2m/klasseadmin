@@ -43,6 +43,7 @@ function legg_til_klasse() {
     for (let i = 0; i < klasser.length; i++)    // kjører gjennom klassene til læreren og finner den med riktig id
         if (klasser[i].id === klasse_id) {
             elever = klasser[i].elever;
+            document.getElementById('valgt_klasse').innerHTML = klasse_id;
             try {
                 document.getElementById('valgt_klasse').innerHTML = klasse_id; // viser hvilken klasse som er valgt
                 console.log("hei"); 
