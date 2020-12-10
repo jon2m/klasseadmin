@@ -41,16 +41,5 @@ function legg_til_klasse() {
     // legge til angitt klasse i minnet //
 
     for (let i = 0; i < klasser.length; i++)    // kjører gjennom klassene til læreren og finner den med riktig id
-        if (klasser[i].id === klasse_id) {
-            elever = klasser[i].elever;
-            document.getElementById('valgt_klasse').innerHTML = klasse_id;
-            try {
-                document.getElementById('valgt_klasse').innerHTML = klasse_id; // viser hvilken klasse som er valgt
-                console.log("hei"); 
-            }
-            catch (err) {
-                console.log("hei");
-                return
-            }
-        }
+        if (klasser[i].id === klasse_id) elever = klasser[i].elever;
 }
