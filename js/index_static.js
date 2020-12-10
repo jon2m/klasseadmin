@@ -14,7 +14,12 @@ async function req() {
     if (laerer_id.value !== '') {                   // hvis det er skrevet inn noe i inputen
         let em = document.getElementById('valg_klassekoder');
         while (em.lastChild) em.removeChild(em.lastChild);     // sletter alle child-elements
-        klasse_data = await( await fetch("/api/klasse_data/"+laerer_id.value)).json();  // henter klasser fra API
+
+        // 
+        // tester CosmosClient
+        klasse_data = await( await fetch("/api/cosmos_test/"+laerer_id.value)).json();  // henter klasser fra API
+        // 
+        // 
 
         if (klasse_data.text !== 'undefined') {          // hvis læreren som ble skrevet inn har klasser
             let klasseliste = klasse_data.klasser;       // legger klassene til lærer i liste

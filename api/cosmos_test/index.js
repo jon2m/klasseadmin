@@ -1,13 +1,11 @@
-module.exports = async function (context, req, utdata) {  
+module.exports = async function (context) {
     let databaseId = 'klasser';
     let containerId = 'laerere';
     // henter ut data fra app-settings
     let endpoint = process.env.endpoint;
     let key = process.env.key;
-    // henter id, klasse_id og elever fra URL:
+    // henter id fra URL:
     let id = context.bindingData.id;
-    let klasse_id = context.bindingData.klasse_id;
-    let elever = context.bindingData.elever;
 
     // setter opp cosoms-klienten
     const CosmosClient = require("@azure/cosmos").CosmosClient;
@@ -15,28 +13,26 @@ module.exports = async function (context, req, utdata) {
     // definerer database og konteiner 
     const database = client.database(databaseId);
     const container = database.container(containerId);
-    
-    const querySpec = {
-        query: "SELECT * from c"
-    };
 
+    // lager query som henter ut klasser der hvor ID stemmer
+    const querySpec = {
+        query: "SELECT c.klasser from c WHERE c.id=\'"+id+"\'"
+    };
+    // gjør selve hentinga
     const { resources: items } = await container.items
         .query(querySpec)
         .fetchAll();
 
-    let newItem = {
-        'id': id,
-        'klasser': [
-            {
-                'id': klasse_id,
-                'elever': elever
-            }
-        ]
+    // response
+    if (typeof (items[0]) !== "undefined") {   // hvis det finnes data i db under gitt id
+        context.res = {
+            body: items[0]        // sender response med klassene til læreren med IDen {id}
+        }
     }
-
-    // const { resource: createdItem } = await container.items.create(newItem);
-
-    context.res = {
-        body: items
-    };
+    else context.res = {
+        body: {
+            text: 'undefined',
+            status: 400
+        }
+    }
 }
