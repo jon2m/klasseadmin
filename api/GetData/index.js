@@ -7,7 +7,7 @@ module.exports = async function (context, req, inndata) { // tar inn databasekob
     }
     else context.res = {
         body: {
-            text: 'undefined',
+            text: endpoint,
             status: 400
         }
     }
